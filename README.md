@@ -14,7 +14,7 @@ O Software foi desenvolvido para substituir as planilhas que deixavam confusas a
 
 **Backlog do produto**
 
-![Imagem do backlog do produto](/asssets/backlog.TI.png)
+![Imagem do backlog do produto](assets/backlog.TI.png)
 
 incialmente o produto necessitava dessas 6 funções que estão explicitadas na iamgem, mas com o decorrer do processo, a dupla sentiu a necessidade da adição de duas funções complementares ( Cadastro do quarto e a divisão entre pesquisa de clientes e funcionários). O quadro foi organizado pelo Trello. 
 
