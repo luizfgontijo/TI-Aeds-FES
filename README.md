@@ -30,4 +30,6 @@ A imagem acima mostra a sprint 2, que deveria ter sido realizada até o dia 22/0
 
 A imagem acima mostra a sprint 3, que deveria ter sido realizada até o dia 24/06/2024. Essa sprint foi a última realizada pela dupla, após isso o sistema começou a passar por uma fase de testes gerais e, não de cada função separadamente, como havia sendo feito. 
 
+**Lista de assinatura das funções e parâmetros**
 
+**TESTES**
