@@ -4,7 +4,7 @@
 
 **Unidade Educacional Coração Eucarístico**
 
-## ALunos Enzo Casaes e Luiz Gontijo 
+## Enzo Casaes e Luiz Gontijo 
 
 ## Sistema do Hotel Descanso garantido 
 
