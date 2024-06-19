@@ -45,3 +45,8 @@ Caso de teste 5- Cadastro de quarto: Entrada de dados: 999/ 4/ 300/ desocupado. 
 
 Caso de teste 6: Cadastro de um código de quarto repetido: Ao cadastrar quarto, colocar um código que já tenha sido cadastrado. Entrada de dados: 999. Saída de dados: O número do quarto já está cadastrado!. Resultado: funcionando!
 
+Caso de teste 7: Cadastro de estadia de um cliente não cadastrado: Entrada de dados: 999/999. Saída de dados: O cliente não está cadastrado. Resultado: Funcionando!
+
+Caso de teste 8: Cadastro de estadia: Entrada de dados: 9000/999/4/"26/10/2005"/"29/10/2005". Saída de dados: Estadia cadastrada com sucesso. Resultado: Funcionando!
+
+Caso de teste 9: Baixar estadia: Entrada de dados: 999. Saída de dados: 150 reais. Resultado: Funcionando!
