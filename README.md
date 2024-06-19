@@ -33,3 +33,15 @@ A imagem acima mostra a sprint 3, que deveria ter sido realizada até o dia 24/0
 **Lista de assinatura das funções e parâmetros**
 
 **TESTES**
+Caso de teste 1- Cadastro de cliente: Entrada de dados: 999/ Pedro/ Rua 133/ 319999. Saída de dados esperada: Cliente cadastrado com sucesso. Resultado: funcionando! 
+
+Caso de teste 2- Cadastro de um código de cliente repetido: Ao cadastrar cliente, colocar um código que já tenha sido cadastrado. Entrada de dados: 999. Saída de dados: O código já está cadastrado!. Resultado: funcionando!
+
+Caso de teste 3: Cadastrar funcionário: Entrada de dados: 999/ Artur/ Chofer/ 3199/ 1500. Saída de dados: Funcionário cadastrado com sucesso!. Resultado: funcionando!
+
+Caso de teste 4- Cadastro de um código de funcionário repetido: Ao cadastrar funcionário, colocar um código que já tenha sido cadastrado. Entrada de dados: 999. Saída de dados: O código já está cadastrado!. Resultado: funcionando!
+
+Caso de teste 5- Cadastro de quarto: Entrada de dados: 999/ 4/ 300/ desocupado. Saída de dados: Quarto cadastrado com sucesso. Resultado: Funcionando!
+
+Caso de teste 6: Cadastro de um código de quarto repetido: Ao cadastrar quarto, colocar um código que já tenha sido cadastrado. Entrada de dados: 999. Saída de dados: O número do quarto já está cadastrado!. Resultado: funcionando!
+
