@@ -50,12 +50,13 @@ void carregarClientes() {
     }
 
     while (fscanf(arquivo, "%d\n", &clientes[totcli].codigocli) != EOF) {
+            //le todos os dados contidos no documento
         fgets(clientes[totcli].nomecli, 30, arquivo);
         strtok(clientes[totcli].nomecli, "\n"); // Remove o \n do final
         fgets(clientes[totcli].enderecocli, 30, arquivo);
-        strtok(clientes[totcli].enderecocli, "\n"); // Remove o \n do final
+        strtok(clientes[totcli].enderecocli, "\n"); 
         fgets(clientes[totcli].telcli, 15, arquivo);
-        strtok(clientes[totcli].telcli, "\n"); // Remove o \n do final
+        strtok(clientes[totcli].telcli, "\n"); 
         totcli++;
     }
 
@@ -72,12 +73,13 @@ void carregarFuncionarios() {
     }
 
     while (fscanf(arquivofunc, "%d\n", &funcionarios[totalfunc].codigofunc) != EOF) {
+              //le todos os dados contidos no documento
         fgets(funcionarios[totalfunc].codigofunc, 30, arquivofunc);
         strtok(funcionarios[totalfunc].nomefunc, "\n"); // Remove o \n do final
         fgets(funcionarios[totalfunc].cargo, 30, arquivofunc);
-        strtok(funcionarios[totalfunc].cargo, "\n"); // Remove o \n do final
+        strtok(funcionarios[totalfunc].cargo, "\n"); 
         fgets(funcionarios[totalfunc].telfunc, 15, arquivofunc);
-        strtok(funcionarios[totalfunc].telfunc, "\n"); // Remove o \n do final
+        strtok(funcionarios[totalfunc].telfunc, "\n");l
         fscanf(arquivofunc, "%f\n", &funcionarios[totalfunc].salario);
         totalfunc++;
     }
@@ -93,6 +95,7 @@ void carregarEstadias() {
         return;
     }
     while (fscanf(arquivo, "%d\n", &estadias[totestadias].codigoest) != EOF) {
+              //le todos os dados contidos no documento
         fgets(estadias[totestadias].dentrada, 20, arquivo);
         strtok(estadias[totestadias].dentrada, "\n");
         fgets(estadias[totestadias].dsaida, 20, arquivo);
@@ -112,11 +115,8 @@ void carregarQuartos() {
         totquartos = 0;
         return;
     }
-    while (fscanf(arquivo, "%d\n", &quartos[totquartos].nquarto) != EOF) {
-        fscanf(arquivo, "%d\n", &quartos[totquartos].qtdhospedes);
-        fscanf(arquivo, "%f\n", &quartos[totquartos].valordiaria);
-        fgets(quartos[totquartos].status, 10, arquivo);
-        strtok(quartos[totquartos].status, "\n");
+      //le todos os dados contidos no documento
+    while (fscanf(arquivo, "%d %d %f %s\n", &quartos[totquartos].nquarto, &quartos[totquartos].qtdhospedes, &quartos[totquartos].valordiaria, quartos[totquartos].status) != EOF) {
         totquartos++;
     }
     fclose(arquivo);
@@ -131,6 +131,7 @@ void salvarClientes() {
     }
 
     for (int i = 0; i < totcli; i++) {
+            //coloca os dados informados em um arquivo para salvar
         fprintf(arquivo, "%d\n", clientes[i].codigocli);
         fprintf(arquivo, "%s\n", clientes[i].nomecli);
         fprintf(arquivo, "%s\n", clientes[i].enderecocli);
@@ -149,6 +150,7 @@ void salvarFuncionarios() {
     }
 
     for (int i = 0; i < totalfunc; i++) {
+            //coloca os dados informados em um arquivo para salvar
         fprintf(arquivofunc, "%d\n", funcionarios[i].codigofunc);
         fprintf(arquivofunc, "%s\n", funcionarios[i].nomefunc);
         fprintf(arquivofunc, "%s\n", funcionarios[i].cargo);
@@ -167,6 +169,7 @@ void salvarEstadias() {
         return;
     }
     for (int i = 0; i < totestadias; i++) {
+            //coloca os dados informados em um arquivo para salvar
         fprintf(arquivo, "%d\n", estadias[i].codigoest);
         fprintf(arquivo, "%s\n", estadias[i].dentrada);
         fprintf(arquivo, "%s\n", estadias[i].dsaida);
@@ -185,10 +188,8 @@ void salvarQuartos() {
         return;
     }
     for (int i = 0; i < totquartos; i++) {
-        fprintf(arquivo, "%d\n", quartos[i].nquarto);
-        fprintf(arquivo, "%d\n", quartos[i].qtdhospedes);
-        fprintf(arquivo, "%.2f\n", quartos[i].valordiaria);
-        fprintf(arquivo, "%s\n", quartos[i].status);
+            //coloca os dados informados em um arquivo para salvar
+        fprintf(arquivo, "%d %d %.2f %s\n", quartos[i].nquarto, quartos[i].qtdhospedes, quartos[i].valordiaria, quartos[i].status);
     }
     fclose(arquivo);
 }
@@ -206,7 +207,7 @@ void cadastrocli() {
             return;
         }
     }
-
+    //é informado todos os dados necessários
     printf("\nDigite o nome do cliente: ");
     scanf(" %[^\n]", nome);
     printf("\nDigite o endereço do cliente: ");
@@ -214,12 +215,14 @@ void cadastrocli() {
     printf("\nDigite o telefone do cliente: ");
     scanf(" %[^\n]", tel);
 
+    //copia os dados inseridos para um array novo cliente e depois adiciona no array de cliente, que é onde ficará armazenado
     cliente novocliente;
     novocliente.codigocli = cod;
     strcpy(novocliente.nomecli, nome);
     strcpy(novocliente.enderecocli, endereco);
     strcpy(novocliente.telcli, tel);
 
+    // Adiciona a nova estadia ao array e incrementa a contagem
     clientes[totcli] = novocliente;
     totcli++;
     printf("\nCliente cadastrado com sucesso");
@@ -242,7 +245,8 @@ void cadastrofunc() {
             return;
         }
     }
-
+    
+    //é informado todos os dados necessários
     printf("\nDigite o nome do funcionário: ");
     scanf(" %[^\n]", nomef);
     printf("\nDigite o cargo do funcionário: ");
@@ -252,6 +256,7 @@ void cadastrofunc() {
     printf("\nDigite o salário do funcionário: ");
     scanf("%f", &salario);
 
+    //copia os dados inseridos para um array novo cliente e depois adiciona no array de cliente, que é onde ficará armazenado
     funcionario novofuncionario;
     novofuncionario.codigofunc = cod;
     strcpy(novofuncionario.nomefunc, nomef);
@@ -259,10 +264,11 @@ void cadastrofunc() {
     strcpy(novofuncionario.telfunc, telf);
     novofuncionario.salario = salario;
 
+    // Adiciona a nova estadia ao array e incrementa a contagem
     funcionarios[totalfunc] = novofuncionario;
     totalfunc++;
     printf("\nFuncionário cadastrado com sucesso");
-
+    //chama a função para salvar os funcionários no arquivo
     salvarFuncionarios();
 }
 
@@ -270,6 +276,7 @@ void cadastrofunc() {
 int calcular_diarias(const char* dataentrada, const char* datasaida) {
 //const usado para nao modificar o valor da variavel dentro da função e utilização de ponteiros
     int d1, m1, a1, d2, m2, a2;
+    //lê as variaveis informadas e atribui elas a algumas variaveis locais para efetuar o calculo de diarias
     sscanf(dataentrada, "%d/%d/%d", &d1, &m1, &a1);
     sscanf(datasaida, "%d/%d/%d", &d2, &m2, &a2);
 
@@ -310,7 +317,8 @@ void cadastroestadia() {
         printf("\nO cliente não está cadastrado.");
         return;
     }
-
+    
+    //é informado todos os dados necessários
     printf("\nDigite a quantidade de hóspedes: ");
     scanf("%d", &qtdhosp);
 
@@ -332,10 +340,10 @@ void cadastroestadia() {
     printf("\nDigite a data de saída (dd/mm/aaaa): ");
     scanf(" %[^\n]", datasaida);
 
-    // Calcula a quantidade de diárias
+    // chama a função de calcular a quantidade de diárias
     qtddiarias = calcular_diarias(dataentrada, datasaida);
 
-    // Cria a nova estadia e atribui os valores
+    //copia os dados inseridos para um array novo cliente e depois adiciona no array de cliente, que é onde ficará armazenado
     estadia novaestadia;
     novaestadia.codigoest = cod;
     strcpy(novaestadia.dentrada, dataentrada);
@@ -360,13 +368,14 @@ void cadastroestadia() {
 
     //chama a função para salvar os dados no arquivo
     salvarEstadias();
+    salvarQuartos();
 }
 
 // Função para cadastrar quarto
 void cadastroquarto() {
     int num, qtdhospedes;
     float vdiaria;
-    char status[10];
+    char status[15];
 
     printf("\nInsira o número do quarto: ");
     scanf("%d", &num);
@@ -377,26 +386,29 @@ void cadastroquarto() {
             return;
         }
     }
-
+    
+    //é informado todos os dados necessários
     printf("\nDigite a quantidade de hóspedes: ");
     scanf("%d", &qtdhospedes);
     printf("\nDigite o valor da diária: ");
     scanf("%f", &vdiaria);
     printf("\nDigite o status do quarto (ocupado/desocupado): ");
     scanf("%s", status);
-
+    
+    //copia os dados inseridos para um array novo cliente e depois adiciona no array de cliente, que é onde ficará armazenado
     quarto novoquarto;
     novoquarto.nquarto = num;
     novoquarto.qtdhospedes = qtdhospedes;
     novoquarto.valordiaria = vdiaria;
     strcpy(novoquarto.status, status);
 
+    // Adiciona a nova estadia ao array e incrementa a contagem
     quartos[totquartos] = novoquarto;
     totquartos++;
     printf("\nQuarto cadastrado com sucesso");
 
-    //chama a função para salvar os dados no arquivo
-    //cadastroquarto();
+    // chama a função para salvar os dados no arquivo
+    salvarQuartos();
 }
 
 // Função para dar baixa na estadia e calcular valor total a ser pago
@@ -411,12 +423,20 @@ void baixarestadia() {
             numero = estadias[i].numquarto;
             for (int j = 0; j < totquartos; j++) {
                 if (quartos[j].nquarto == numero) {
+                        //calcula o valor total a ser pago, de acordo o valor da diaria
                     vtotal = quartos[j].valordiaria * estadias[i].qtddiarias;
                     // Atualiza status do quarto para desocupado
                     strcpy(quartos[j].status, "desocupado");
                     break;
                 }
             }
+            // Remove a estadia
+            for (int k = i; k < totestadias - 1; k++) {
+                estadias[k] = estadias[k + 1];
+            }
+            totestadias--;
+            salvarEstadias();
+            salvarQuartos();
             printf("\nO valor total é R$%.2f", vtotal);
             return;
         }
@@ -437,6 +457,7 @@ void pesquisafunc(){
         scanf("%d", &cod);
         for(int i = 0; i < totalfunc; i++) {
             if(funcionarios[i].codigofunc == cod) {
+                    //exibe dados do funcionário solicitado
                 printf("\nO nome é %s", funcionarios[i].nomefunc);
                 printf("\nO cargo é %s", funcionarios[i].cargo);
                 printf("\nO telefone é %s", funcionarios[i].telfunc);
@@ -450,8 +471,10 @@ void pesquisafunc(){
         printf("\nInsira o nome do funcionário: ");
         scanf(" %[^\n]", nome);
         for(int j = 0; j < totalfunc; j++) {
+                //repetição para encontrar o funcionário desejado
             resultado = strcmp(funcionarios[j].nomefunc, nome);
             if(resultado == 0) {
+                    //exibe dados do funcionário solicitado
                 printf("\nO nome é %s", funcionarios[j].nomefunc);
                 printf("\nO código é %s", funcionarios[j].codigofunc);
                 printf("\nO cargo é %s", funcionarios[j].cargo);
@@ -472,7 +495,6 @@ void pesquisacli(){
     int cod, opcao, resultado;
     char nome[30];
 
-
     printf("\nDeseja pesquisar por nome ou código? 1 - código || 2 - nome\n");
     scanf("%d", &opcao);
 
@@ -481,6 +503,7 @@ void pesquisacli(){
     scanf("%d", &cod);
     for(int i = 0; i < totcli; i++){
         if(clientes[i].codigocli == cod){
+                //exibe dados do cliente solicitado
             printf("\nO nome é %s", clientes[i].nomecli);
             printf("\nO endereço é %s", clientes[i].enderecocli);
             printf("\nO telefone é %s", clientes[i].telcli);
@@ -494,8 +517,10 @@ void pesquisacli(){
         printf("\nInsira o nome do cliente: ");
         scanf(" %[^\n]", nome);
         for(int j = 0; j < totcli; j++) {
+                //repetição para encontrar o cliente
             resultado = strcmp(clientes[j].nomecli, nome);
             if(resultado == 0) {
+                //exibe dados do cliente solicitado
                 printf("\nO nome é %s", clientes[j].nomecli);
                 printf("\nO código é %d", clientes[j].codigocli);
                 printf("\nO endereço é %s", clientes[j].enderecocli);
@@ -503,7 +528,7 @@ void pesquisacli(){
                 return;
             }
         }
-        printf("\nNome de funcionário inexistente.\n");
+        printf("\nNome de cliente inexistente.\n");
     }
     else {
         printf("\nOpção inválida. Por favor, escolha 1 ou 2.\n");
@@ -512,29 +537,33 @@ void pesquisacli(){
 }
 
 // Função para mostrar estadias de determinado cliente
-void mostraestadia(){
+void mostraestadia() {
     int cod;
 
     printf("\nInsira o código do cliente: ");
     scanf("%d", &cod);
     // Loop para encontrar o cliente desejado
-    for(int i = 0; i < totcli; i++){
-        if(clientes[i].codigocli == cod){
+    for (int i = 0; i < totcli; i++) {
+        if (clientes[i].codigocli == cod) {
             // Loop para encontrar a estadia do cliente
-            for(int j = 0; j < totestadias; j++){
-                if(estadias[j].codcliente == cod){
-                    printf("\nO nome do cliente é %s", clientes[i].nomecli);
-                    printf("\nA quantidade de diárias é %d", estadias[j].qtddiarias);
-                    printf("\nO número do quarto do cliente é %d", estadias[j].numquarto);
+            printf("\nO nome do cliente é %s", clientes[i].nomecli);
+            for (int j = 0; j < totestadias; j++) {
+                if (estadias[j].codcliente == cod) {
+                    printf("\n\nCódigo da estadia: %d", estadias[j].codigoest);
+                    printf("\nData de entrada: %s", estadias[j].dentrada);
+                    printf("\nData de saída: %s", estadias[j].dsaida);
+                    printf("\nQuantidade de diárias: %d", estadias[j].qtddiarias);
+                    printf("\nNúmero do quarto: %d\n", estadias[j].numquarto);
                 }
             }
+            return;
         }
     }
+    printf("\nCliente não encontrado.");
 }
-
 // Função principal
 int main() {
-    //chama a função de carregar os dados antes da execução
+    //chama as funções de carregar os dados antes da execução
     carregarClientes();
     carregarFuncionarios();
     carregarEstadias();
@@ -558,7 +587,7 @@ int main() {
         printf("\nEscolha uma opção: ");
         scanf("%d", &opcao);
 
-
+        //estrutura para identificar qual função do programa executar
             if(opcao ==1){
                 cadastrocli();
             }
