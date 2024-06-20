@@ -50,3 +50,9 @@ Caso de teste 7: Cadastro de estadia de um cliente não cadastrado: Entrada de d
 Caso de teste 8: Cadastro de estadia: Entrada de dados: 9000/999/4/"26/10/2005"/"29/10/2005". Saída de dados: Estadia cadastrada com sucesso. Resultado: Funcionando!
 
 Caso de teste 9: Baixar estadia: Entrada de dados: 999. Saída de dados: 150 reais. Resultado: Funcionando!
+
+Caso de teste 10: Cadastrar estadia antes de cadastrar um quarto: Entrada de dados: 9000/999/4. Saída de dados: Não tem quarto disponível com essa descrição. Resuldado: Funcionando!
+
+Caso de teste 11: Cadastrar estadia antes de cadastrar um cliente: Entrada de dados: 9000/999. Saída de dados: Cliente não cadastrado. Resultado: Funcionando!
+
+Caso de teste 12:
