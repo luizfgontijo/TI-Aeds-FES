@@ -73,8 +73,7 @@ void carregarFuncionarios() {
     }
 
     while (fscanf(arquivofunc, "%d\n", &funcionarios[totalfunc].codigofunc) != EOF) {
-              //le todos os dados contidos no documento
-        fgets(funcionarios[totalfunc].codigofunc, 30, arquivofunc);
+        fgets(funcionarios[totalfunc].nomefunc, 30, arquivofunc);
         strtok(funcionarios[totalfunc].nomefunc, "\n"); // Remove o \n do final
         fgets(funcionarios[totalfunc].cargo, 30, arquivofunc);
         strtok(funcionarios[totalfunc].cargo, "\n");
@@ -86,6 +85,7 @@ void carregarFuncionarios() {
 
     fclose(arquivofunc);
 }
+
 
 //Função para carregar dados existentes no arquivo estadias
 void carregarEstadias() {
@@ -150,12 +150,11 @@ void salvarFuncionarios() {
     }
 
     for (int i = 0; i < totalfunc; i++) {
-            //coloca os dados informados em um arquivo para salvar
         fprintf(arquivofunc, "%d\n", funcionarios[i].codigofunc);
         fprintf(arquivofunc, "%s\n", funcionarios[i].nomefunc);
         fprintf(arquivofunc, "%s\n", funcionarios[i].cargo);
         fprintf(arquivofunc, "%s\n", funcionarios[i].telfunc);
-        fprintf(arquivofunc, "%d\n", funcionarios[i].salario);
+        fprintf(arquivofunc, "%.2f\n", funcionarios[i].salario);
     }
 
     fclose(arquivofunc);
@@ -457,7 +456,6 @@ void pesquisafunc(){
         scanf("%d", &cod);
         for(int i = 0; i < totalfunc; i++) {
             if(funcionarios[i].codigofunc == cod) {
-                    //exibe dados do funcionário solicitado
                 printf("\nO nome é %s", funcionarios[i].nomefunc);
                 printf("\nO cargo é %s", funcionarios[i].cargo);
                 printf("\nO telefone é %s", funcionarios[i].telfunc);
@@ -471,12 +469,10 @@ void pesquisafunc(){
         printf("\nInsira o nome do funcionário: ");
         scanf(" %[^\n]", nome);
         for(int j = 0; j < totalfunc; j++) {
-                //repetição para encontrar o funcionário desejado
             resultado = strcmp(funcionarios[j].nomefunc, nome);
             if(resultado == 0) {
-                    //exibe dados do funcionário solicitado
                 printf("\nO nome é %s", funcionarios[j].nomefunc);
-                printf("\nO código é %s", funcionarios[j].codigofunc);
+                printf("\nO código é %d", funcionarios[j].codigofunc);
                 printf("\nO cargo é %s", funcionarios[j].cargo);
                 printf("\nO telefone é %s", funcionarios[j].telfunc);
                 printf("\nO salário é %.2f\n", funcionarios[j].salario);
@@ -489,7 +485,6 @@ void pesquisafunc(){
         printf("\nOpção inválida. Por favor, escolha 1 ou 2.\n");
     }
 }
-
 // Função para pesquisar clientes
 void pesquisacli(){
     int cod, opcao, resultado;
