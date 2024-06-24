@@ -79,7 +79,7 @@ void carregarFuncionarios() {
         fgets(funcionarios[totalfunc].cargo, 30, arquivofunc);
         strtok(funcionarios[totalfunc].cargo, "\n"); 
         fgets(funcionarios[totalfunc].telfunc, 15, arquivofunc);
-        strtok(funcionarios[totalfunc].telfunc, "\n");l
+        strtok(funcionarios[totalfunc].telfunc, "\n");
         fscanf(arquivofunc, "%f\n", &funcionarios[totalfunc].salario);
         totalfunc++;
     }
