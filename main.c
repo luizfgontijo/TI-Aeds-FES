@@ -24,7 +24,7 @@ typedef struct {
 typedef struct{
     int nquarto, qtdhospedes;
     float valordiaria;
-    char status[10];
+    char status[15];
 } quarto;
 
 // Declaração de variáveis globais
@@ -110,17 +110,24 @@ void carregarEstadias() {
 
 // Função para carregar dados existentes no arquivo de quartos
 void carregarQuartos() {
-    FILE *arquivo = fopen("quartos.txt", "r");
-    if (arquivo == NULL) {
+    FILE *arquivoquarto = fopen("quartos.txt", "r");
+    if (arquivoquarto == NULL) {
+        // Se o arquivo não existir, inicialize com 0 quartos
         totquartos = 0;
         return;
     }
-      //le todos os dados contidos no documento
-    while (fscanf(arquivo, "%d %d %f %s\n", &quartos[totquartos].nquarto, &quartos[totquartos].qtdhospedes, &quartos[totquartos].valordiaria, quartos[totquartos].status) != EOF) {
+
+    while (fscanf(arquivoquarto, "%d\n", &quartos[totquartos].nquarto) != EOF) {
+        fscanf(arquivoquarto, "%d\n", &quartos[totquartos].qtdhospedes);
+        fscanf(arquivoquarto, "%f\n", &quartos[totquartos].valordiaria);
+        fgets(quartos[totquartos].status, 15, arquivoquarto);
+        strtok(quartos[totquartos].status, "\n");
         totquartos++;
     }
-    fclose(arquivo);
+
+    fclose(arquivoquarto);
 }
+
 
 //função para salvar os clientes no arquivo
 void salvarClientes() {
@@ -181,16 +188,21 @@ void salvarEstadias() {
 
 // Função para salvar os quartos no arquivo
 void salvarQuartos() {
-    FILE *arquivo = fopen("quartos.txt", "w");
-    if (arquivo == NULL) {
-        perror("Erro ao abrir o arquivo para escrita");
+    FILE *arquivoquarto = fopen("quartos.txt", "w");
+    if (arquivoquarto == NULL) {
+        printf("Erro ao abrir o arquivo quartos.txt para escrita.\n");
         return;
     }
+
     for (int i = 0; i < totquartos; i++) {
-            //coloca os dados informados em um arquivo para salvar
-        fprintf(arquivo, "%d %d %.2f %s\n", quartos[i].nquarto, quartos[i].qtdhospedes, quartos[i].valordiaria, quartos[i].status);
+        fprintf(arquivoquarto, "%d\n%d\n%.2f\n%s\n",
+                quartos[i].nquarto,
+                quartos[i].qtdhospedes,
+                quartos[i].valordiaria,
+                quartos[i].status);
     }
-    fclose(arquivo);
+
+    fclose(arquivoquarto);
 }
 
 // Função de cadastro de clientes
@@ -372,42 +384,23 @@ void cadastroestadia() {
 
 // Função para cadastrar quarto
 void cadastroquarto() {
-    int num, qtdhospedes;
-    float vdiaria;
-    char status[15];
-
-    printf("\nInsira o número do quarto: ");
-    scanf("%d", &num);
-    // Verifica se o número do quarto está disponível
-    for (int i = 0; i < totquartos; i++) {
-        if (quartos[i].nquarto == num) {
-            printf("\nO número do quarto já está cadastrado!");
-            return;
-        }
+    if (totquartos >= 100) {
+        printf("Número máximo de quartos atingido.\n");
+        return;
     }
 
-    //é informado todos os dados necessários
-    printf("\nDigite a quantidade de hóspedes: ");
-    scanf("%d", &qtdhospedes);
-    printf("\nDigite o valor da diária: ");
-    scanf("%f", &vdiaria);
-    printf("\nDigite o status do quarto (ocupado/desocupado): ");
-    scanf("%s", status);
+    printf("Digite o número do quarto: ");
+    scanf("%d", &quartos[totquartos].nquarto);
+    printf("Digite a quantidade de hóspedes: ");
+    scanf("%d", &quartos[totquartos].qtdhospedes);
+    printf("Digite o valor da diária: ");
+    scanf("%f", &quartos[totquartos].valordiaria);
+    printf("Digite o status do quarto: ");
+    scanf("%s", quartos[totquartos].status);
 
-    //copia os dados inseridos para um array novo cliente e depois adiciona no array de cliente, que é onde ficará armazenado
-    quarto novoquarto;
-    novoquarto.nquarto = num;
-    novoquarto.qtdhospedes = qtdhospedes;
-    novoquarto.valordiaria = vdiaria;
-    strcpy(novoquarto.status, status);
-
-    // Adiciona a nova estadia ao array e incrementa a contagem
-    quartos[totquartos] = novoquarto;
     totquartos++;
-    printf("\nQuarto cadastrado com sucesso");
-
-    // chama a função para salvar os dados no arquivo
     salvarQuartos();
+    printf("Quarto cadastrado com sucesso!\n");
 }
 
 // Função para dar baixa na estadia e calcular valor total a ser pago
@@ -606,6 +599,9 @@ int main() {
             }
             else if(opcao ==8){
                 mostraestadia();
+            }
+            else if(opcao ==9){
+                printf("\nSaindo!");
             }
             else{
                 printf("\nOpção inválida.");
