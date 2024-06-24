@@ -54,9 +54,9 @@ void carregarClientes() {
         fgets(clientes[totcli].nomecli, 30, arquivo);
         strtok(clientes[totcli].nomecli, "\n"); // Remove o \n do final
         fgets(clientes[totcli].enderecocli, 30, arquivo);
-        strtok(clientes[totcli].enderecocli, "\n"); 
+        strtok(clientes[totcli].enderecocli, "\n");
         fgets(clientes[totcli].telcli, 15, arquivo);
-        strtok(clientes[totcli].telcli, "\n"); 
+        strtok(clientes[totcli].telcli, "\n");
         totcli++;
     }
 
@@ -77,7 +77,7 @@ void carregarFuncionarios() {
         fgets(funcionarios[totalfunc].codigofunc, 30, arquivofunc);
         strtok(funcionarios[totalfunc].nomefunc, "\n"); // Remove o \n do final
         fgets(funcionarios[totalfunc].cargo, 30, arquivofunc);
-        strtok(funcionarios[totalfunc].cargo, "\n"); 
+        strtok(funcionarios[totalfunc].cargo, "\n");
         fgets(funcionarios[totalfunc].telfunc, 15, arquivofunc);
         strtok(funcionarios[totalfunc].telfunc, "\n");
         fscanf(arquivofunc, "%f\n", &funcionarios[totalfunc].salario);
@@ -245,7 +245,7 @@ void cadastrofunc() {
             return;
         }
     }
-    
+
     //é informado todos os dados necessários
     printf("\nDigite o nome do funcionário: ");
     scanf(" %[^\n]", nomef);
@@ -317,7 +317,7 @@ void cadastroestadia() {
         printf("\nO cliente não está cadastrado.");
         return;
     }
-    
+
     //é informado todos os dados necessários
     printf("\nDigite a quantidade de hóspedes: ");
     scanf("%d", &qtdhosp);
@@ -386,7 +386,7 @@ void cadastroquarto() {
             return;
         }
     }
-    
+
     //é informado todos os dados necessários
     printf("\nDigite a quantidade de hóspedes: ");
     scanf("%d", &qtdhospedes);
@@ -394,7 +394,7 @@ void cadastroquarto() {
     scanf("%f", &vdiaria);
     printf("\nDigite o status do quarto (ocupado/desocupado): ");
     scanf("%s", status);
-    
+
     //copia os dados inseridos para um array novo cliente e depois adiciona no array de cliente, que é onde ficará armazenado
     quarto novoquarto;
     novoquarto.nquarto = num;
