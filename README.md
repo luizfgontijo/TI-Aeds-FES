@@ -90,4 +90,6 @@ Caso de teste 10: Cadastrar estadia antes de cadastrar um quarto: Entrada de dad
 
 Caso de teste 11: Cadastrar estadia antes de cadastrar um cliente: Entrada de dados: 9000/999. Saída de dados: Cliente não cadastrado. Resultado: Funcionando!
 
-Caso de teste 12:
+Caso de teste 12: Logo ao início digitar um número que não leva à nenhuma opção: Entrada de dados: -2. Saída de dados: opção inválida. Resultado: Funcionando!
+
+
