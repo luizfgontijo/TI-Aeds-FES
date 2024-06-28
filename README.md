@@ -92,4 +92,9 @@ Caso de teste 11: Cadastrar estadia antes de cadastrar um cliente: Entrada de da
 
 Caso de teste 12: Logo ao início digitar um número que não leva à nenhuma opção: Entrada de dados: -2. Saída de dados: opção inválida. Resultado: Funcionando!
 
+Caso de teste 13: Buscar cliente: Entrada de dados: "Código" + "Número de um cliente já cadastrado". Saída de dados: Nome + endereço + telefone do cliente 
+
+Caso de teste 14: Buscar funcionário: Entrada de dados: "Código" + "Número de um funcionário já cadastrado". Saída de dados: Nome + cargo + telefone + salário
+
+
 
